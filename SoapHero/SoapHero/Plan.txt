@@ -1,0 +1,43 @@
+﻿
+(Mohammed)
+Écran Menu
+	-> Commencer <-	
+	-> Options
+	-> Quitter
+
+Joueur
+	(Justyn)
+	Joueur
+		-> Sac
+			-> Ammunition
+		-> Bouger
+		-> SpriteAmmunition
+		-> Compartement (Énergie)
+		-> Mourrir
+	()
+	-> Humain : Joueur
+		-> Bouger (Phys)
+	()
+	-> VaisseauSpatial : Joueur
+		-> Bouger (Phys)
+
+Monde principale
+	(Mohammed)
+	-> MondeTuile
+	(Mohammed)
+	-> Sélection de joueur (couleurs)
+	(Justyn)
+	-> Sélection de niveau
+	()
+	-> Magasin
+
+
+
+
+
+
+Niveau 1
+	-> Touhou
+
+Niveau 2
+	-> Gungeon
