@@ -73,7 +73,7 @@ namespace SoapHero
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Orange);
+            GraphicsDevice.Clear(Color.Green);
 
             // TODO: Add your drawing code here
 
