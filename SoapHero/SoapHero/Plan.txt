@@ -1,5 +1,4 @@
-﻿
-(Mohammed)
+﻿(Mohammed)
 Écran Menu
 	-> Commencer <-	
 	-> Options
@@ -14,10 +13,10 @@ Joueur
 		-> SpriteAmmunition
 		-> Compartement (Énergie)
 		-> Mourrir
-	()
+	(Justyn)
 	-> Humain : Joueur
 		-> Bouger (Phys)
-	()
+	(Mohammed)
 	-> VaisseauSpatial : Joueur
 		-> Bouger (Phys)
 
@@ -28,7 +27,7 @@ Monde principale
 	-> Sélection de joueur (couleurs)
 	(Justyn)
 	-> Sélection de niveau
-	()
+	(Justyn)
 	-> Magasin
 
 
