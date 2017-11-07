@@ -12,6 +12,21 @@ namespace SoapHero
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        /////////////////////////////////////// begin /////////////////////////////////
+        enum GameState
+        {
+            MainMenu,
+            Options,
+            Playing,
+        }
+
+        GameState CurrentGameState = GameState.MainMenu;
+
+        //screen adjustment
+        int screenWith = 800; int screenHight = 600;
+
+        cButton btnPlay;
+        //////////////////////////////////////// end ////////////////////////////////
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -39,8 +54,17 @@ namespace SoapHero
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            //////////////////////////////// begin ////////////////////////////////////////
+            ///screen Stuff
+            graphics.PreferredBackBufferWidth = screenWith;
+            graphics.PreferredBackBufferHeight = screenHight;
 
-            // TODO: use this.Content to load your game content here
+            //graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+            IsMouseVisible = true;
+            btnPlay = new cButton(Content.Load<Texture2D>("playBtn"), graphics.GraphicsDevice);
+            btnPlay.setPosition(new Vector2(300, 300));
+            //////////////////////////////////// end ////////////////////////////////////
         }
 
         /// <summary>
@@ -62,7 +86,21 @@ namespace SoapHero
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            ////////////////////////////////////// begin ///////////////////////////////////
+            MouseState mouse = Mouse.GetState();
+
+            switch (CurrentGameState)
+            {
+                case GameState.MainMenu:
+                    if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
+                    btnPlay.Update(mouse);
+                    break;
+                case GameState.Playing:
+                    break;
+                case GameState.Options:
+                    break;
+            }
+            /////////////////////////////////////// end ////////////////////////////////////
 
             base.Update(gameTime);
         }
@@ -75,7 +113,23 @@ namespace SoapHero
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            /////////////////////////////////////// begin ////////////////////////////////////
+            spriteBatch.Begin();
+
+            switch (CurrentGameState)
+            {
+                case GameState.MainMenu:
+                    spriteBatch.Draw(Content.Load<Texture2D>("MainMenu"), new Rectangle(0, 0, screenWith, screenHight), Color.White);
+                    btnPlay.Draw(spriteBatch);
+
+                    break;
+                case GameState.Playing:
+                    break;
+                case GameState.Options:
+                    break;
+            }
+            spriteBatch.End();
+            /////////////////////////////////////// end ////////////////////////////////////
 
             base.Draw(gameTime);
         }
