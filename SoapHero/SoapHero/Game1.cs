@@ -26,7 +26,8 @@ namespace SoapHero
         int screenWith = 800; int screenHight = 600;
 
         cButton btnPlay;
-        //////////////////////////////////////// end ////////////////////////////////
+        cButton btnOptions;
+        //////////////////////////////////////// end /////////////////////////////////
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -64,6 +65,9 @@ namespace SoapHero
             IsMouseVisible = true;
             btnPlay = new cButton(Content.Load<Texture2D>("playBtn"), graphics.GraphicsDevice);
             btnPlay.setPosition(new Vector2(300, 300));
+
+            btnOptions = new cButton(Content.Load<Texture2D>("optionsBtn"), graphics.GraphicsDevice);
+            btnOptions.setPosition(new Vector2(300, 340));
             //////////////////////////////////// end ////////////////////////////////////
         }
 
@@ -94,6 +98,10 @@ namespace SoapHero
                 case GameState.MainMenu:
                     if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
                     btnPlay.Update(mouse);
+                    
+//                    if (btnOptions.isClicked == true) CurrentGameState = GameState.Options;
+                    btnOptions.Update(mouse);
+
                     break;
                 case GameState.Playing:
                     break;
@@ -121,6 +129,7 @@ namespace SoapHero
                 case GameState.MainMenu:
                     spriteBatch.Draw(Content.Load<Texture2D>("MainMenu"), new Rectangle(0, 0, screenWith, screenHight), Color.White);
                     btnPlay.Draw(spriteBatch);
+                    btnOptions.Draw(spriteBatch);
 
                     break;
                 case GameState.Playing:

@@ -41,12 +41,13 @@ namespace SoapHero
             {
                 if (colour.A == 255) down = false;
                 if (colour.A == 0) down = true;
-                if (down) colour.A += 3; else colour.A -= 3;
+                if (down==false) colour.B = 150; 
+                //else colour.A -= 3;
                 if (mouse.LeftButton == ButtonState.Pressed) isClicked = true;
             }
-            else if (colour.A < 255)
+            else if (colour.B < 255)
             {
-                colour.A += 3;
+                colour.B += 5;
                 isClicked = false;
             }
         }
