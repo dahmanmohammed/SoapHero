@@ -27,6 +27,7 @@ namespace SoapHero
 
         cButton btnPlay;
         cButton btnOptions;
+        cButton btnQuit;
         //////////////////////////////////////// end /////////////////////////////////
         public Game1()
         {
@@ -68,6 +69,9 @@ namespace SoapHero
 
             btnOptions = new cButton(Content.Load<Texture2D>("optionsBtn"), graphics.GraphicsDevice);
             btnOptions.setPosition(new Vector2(300, 340));
+
+            btnQuit = new cButton(Content.Load<Texture2D>("quitBtn"), graphics.GraphicsDevice);
+            btnQuit.setPosition(new Vector2(300, 380));
             //////////////////////////////////// end ////////////////////////////////////
         }
 
@@ -97,10 +101,12 @@ namespace SoapHero
             {
                 case GameState.MainMenu:
                     if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
-                    btnPlay.Update(mouse);
-                    
-//                    if (btnOptions.isClicked == true) CurrentGameState = GameState.Options;
+ //                 if (btnOptions.isClicked == true) CurrentGameState = GameState.Options;
+                    if (btnQuit.isClicked == true) Exit();
+
+                    btnPlay.Update(mouse);                  
                     btnOptions.Update(mouse);
+                    btnQuit.Update(mouse);
 
                     break;
                 case GameState.Playing:
@@ -130,7 +136,7 @@ namespace SoapHero
                     spriteBatch.Draw(Content.Load<Texture2D>("MainMenu"), new Rectangle(0, 0, screenWith, screenHight), Color.White);
                     btnPlay.Draw(spriteBatch);
                     btnOptions.Draw(spriteBatch);
-
+                    btnQuit.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
                     break;
