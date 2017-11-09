@@ -40,13 +40,18 @@
   <ItemGroup>
     <Compile Include="cButton.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Monde.cs" />
-    <Compile Include="MondeDeTuile.cs" />
+    <Compile Include="Joueur\JoueurSprite.cs" />
+    <Compile Include="Mondes\Base\Monde.cs" />
+    <Compile Include="Mondes\Base\MondeDeTuile.cs" />
+    <Compile Include="Mondes\Niveau\MondePrincipale.cs" />
+    <Compile Include="Mondes\Niveau\NiveauDeux.cs" />
+    <Compile Include="Mondes\Niveau\NiveauUn.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sprite.cs" />
-    <Compile Include="SpriteAnimation.cs" />
+    <Compile Include="Joueur\Base\Sprite.cs" />
+    <Compile Include="Joueur\Base\SpriteAnimation.cs" />
+    <Compile Include="Mondes\LevelManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

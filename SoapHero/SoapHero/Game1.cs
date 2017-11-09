@@ -20,7 +20,15 @@ namespace SoapHero
             Playing,
         }
 
+        enum WorldState
+        {
+            InitialWorld,
+            LevelOne,
+            LevelTwo
+        }
+
         GameState CurrentGameState = GameState.MainMenu;
+        WorldState CurrentWorldState = WorldState.InitialWorld;
 
         //screen adjustment
         int screenWith = 800; int screenHight = 600;
@@ -28,6 +36,11 @@ namespace SoapHero
         cButton btnPlay;
         cButton btnOptions;
         cButton btnQuit;
+
+        private Rectangle cameraRect;
+
+        LevelManager levelManager;
+
         //////////////////////////////////////// end /////////////////////////////////
         public Game1()
         {
@@ -44,7 +57,7 @@ namespace SoapHero
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            cameraRect = new Rectangle(0, 0, this.graphics.GraphicsDevice.Viewport.Width, this.graphics.GraphicsDevice.Viewport.Height);
             base.Initialize();
         }
 
@@ -100,16 +113,20 @@ namespace SoapHero
             switch (CurrentGameState)
             {
                 case GameState.MainMenu:
-                    if (btnPlay.isClicked == true) CurrentGameState = GameState.Playing;
+                    if (btnPlay.isClicked == true) 
+                    {
+                        levelManager = new LevelManager();
+                        CurrentGameState = GameState.Playing;
+                    }
  //                 if (btnOptions.isClicked == true) CurrentGameState = GameState.Options;
                     if (btnQuit.isClicked == true) Exit();
 
                     btnPlay.Update(mouse);                  
                     btnOptions.Update(mouse);
                     btnQuit.Update(mouse);
-
                     break;
                 case GameState.Playing:
+                    levelManager.Update((int)CurrentWorldState);
                     break;
                 case GameState.Options:
                     break;
@@ -139,6 +156,8 @@ namespace SoapHero
                     btnQuit.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
+                    //levelManager.Draw((int)CurrentWorldState, cameraRect, spriteBatch);
+                    levelManager.Draw((int)CurrentWorldState, GraphicsDevice); //TEMP TO TEST PLAYER
                     break;
                 case GameState.Options:
                     break;
