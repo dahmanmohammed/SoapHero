@@ -39,8 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="cButton.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Joueur\JoueurSprite.cs" />
+    <Compile Include="Joueur\Joueur.cs" />
     <Compile Include="Mondes\Base\Monde.cs" />
     <Compile Include="Mondes\Base\MondeDeTuile.cs" />
     <Compile Include="Mondes\Niveau\MondePrincipale.cs" />

@@ -12,18 +12,18 @@ namespace SoapHero
     {
         Monde monde;
 
-        public void Update(int worldState)
+        public void Update(WorldState worldState)
         {
             if (monde != null) return;
             switch (worldState)
             {
-                case 0: //WorldState.InitialWorld
+                case WorldState.InitialWorld:
                     monde = new MondePrincipale();
                     break;
-                case 1: //WorldState.LevelOne
+                case WorldState.LevelOne:
                     monde = new NiveauUn();
                     break;
-                case 2: //WorldState.LevelTwo
+                case WorldState.LevelTwo:
                     monde = new NiveauDeux();
                     break;
             }
@@ -36,17 +36,17 @@ namespace SoapHero
 
         //TEMP JUST TO TEST THE PLAYER
         
-        public void Draw(int worldState, GraphicsDevice gd)
+        public void Draw(WorldState worldState, GraphicsDevice gd)
         {
             switch (worldState)
             {
-                case 0: //WorldState.InitialWorld
+                case WorldState.InitialWorld:
                     gd.Clear(Color.Red);
                     break;
-                case 1: //WorldState.LevelOne
+                case WorldState.LevelOne:
                     gd.Clear(Color.Green);
                     break;
-                case 2: //WorldState.LevelTwo
+                case WorldState.LevelTwo:
                     gd.Clear(Color.Blue);
                     break;
             }

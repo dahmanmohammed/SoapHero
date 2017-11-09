@@ -13,20 +13,7 @@ namespace SoapHero
         SpriteBatch spriteBatch;
 
         /////////////////////////////////////// begin /////////////////////////////////
-        enum GameState
-        {
-            MainMenu,
-            Options,
-            Playing,
-        }
-
-        enum WorldState
-        {
-            InitialWorld,
-            LevelOne,
-            LevelTwo
-        }
-
+        
         GameState CurrentGameState = GameState.MainMenu;
         WorldState CurrentWorldState = WorldState.InitialWorld;
 
@@ -126,7 +113,7 @@ namespace SoapHero
                     btnQuit.Update(mouse);
                     break;
                 case GameState.Playing:
-                    levelManager.Update((int)CurrentWorldState);
+                    levelManager.Update(CurrentWorldState);
                     break;
                 case GameState.Options:
                     break;
@@ -157,7 +144,7 @@ namespace SoapHero
                     break;
                 case GameState.Playing:
                     //levelManager.Draw((int)CurrentWorldState, cameraRect, spriteBatch);
-                    levelManager.Draw((int)CurrentWorldState, GraphicsDevice); //TEMP TO TEST PLAYER
+                    levelManager.Draw(CurrentWorldState, GraphicsDevice); //TEMP TO TEST PLAYER
                     break;
                 case GameState.Options:
                     break;
