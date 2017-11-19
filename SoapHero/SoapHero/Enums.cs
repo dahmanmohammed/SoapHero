@@ -1,18 +1,18 @@
-﻿enum GameState
+﻿public enum GameState
 {
     MainMenu,
     Options,
     Playing,
 }
 
-enum WorldState
+public enum WorldState
 {
     InitialWorld,
     LevelOne,
     LevelTwo
 }
 
-enum PlayerDirection
+public enum PlayerDirection
 {
     Nord,
     NordEst,
@@ -24,7 +24,7 @@ enum PlayerDirection
     NordOuest
 }
 
-enum PlayerState
+public enum PlayerState
 {
     Stationnaire,
     Marche,

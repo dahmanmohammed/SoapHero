@@ -1,23 +1,21 @@
-﻿namespace SoapHero
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SoapHero
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Content;
-    using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;
-
-    public abstract class Joueur : SpriteAnimation
+    public class Joueur : SpriteAnimation
     {
         protected static List<Palette> palettes = new List<Palette>();
 
-        private PlayerDirection directionDeplacement = PlayerDirection.Sud;
+        private PlayerDirection directionDeplacement;
         private PlayerState etat = PlayerState.Stationnaire;
 
-        private float vitesse = 0.2f;
+        private float vitesseMarche = 0.2f;
 
         public Joueur(float x, float y) : base(x, y) { }
 
@@ -29,12 +27,10 @@
             }
         }
 
-        protected abstract void LoadContent(ContentManager content, GraphicsDeviceManager graphics);
-
         public override void Update(GameTime gameTime, GraphicsDeviceManager graphics)
         {
             // Calcul de la vitesse de marche du joueur (indépendante du matériel)
-            float vitesse = gameTime.ElapsedGameTime.Milliseconds * this.vitesse;
+            float vitesse = gameTime.ElapsedGameTime.Milliseconds * this.vitesseMarche;
 
             // Pour éviter d'interroger le clavier trop souvent (soucis d'efficacité), on 
             // stocke son état.
@@ -121,6 +117,7 @@
                 this.etat = PlayerState.Stationnaire;    // aucun mouvement: le joueur est stationnaire
             }
 
+            // Ne pas oublier d'invoquer SpriteAnimation.Update() qui s'occupe de l'animation.
             base.Update(gameTime, graphics);
         }
     }

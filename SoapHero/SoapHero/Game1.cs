@@ -14,17 +14,14 @@ namespace SoapHero
 
         #region declarations
         GameState CurrentGameState = GameState.MainMenu;
-        WorldState CurrentWorldState = WorldState.InitialWorld;
 
         //screen adjustment
-        int screenWith = 800; int screenHight = 600;
+        int screenWidth = 1280; int screenHeight = 720;
 
         cButton btnPlay;
         cButton btnOptions;
         cButton btnQuit;
-
-        private Rectangle cameraRect;
-
+        
         LevelManager levelManager;
         #endregion
 
@@ -43,7 +40,12 @@ namespace SoapHero
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            cameraRect = new Rectangle(0, 0, this.graphics.GraphicsDevice.Viewport.Width, this.graphics.GraphicsDevice.Viewport.Height);
+            ///screen Stuff
+            graphics.PreferredBackBufferWidth = screenWidth;
+            graphics.PreferredBackBufferHeight = screenHeight;
+            //graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+            levelManager = new LevelManager(this.graphics.GraphicsDevice);
             base.Initialize();
         }
 
@@ -56,21 +58,15 @@ namespace SoapHero
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //////////////////////////////// begin ////////////////////////////////////////
-            ///screen Stuff
-            graphics.PreferredBackBufferWidth = screenWith;
-            graphics.PreferredBackBufferHeight = screenHight;
-
-            //graphics.IsFullScreen = true;
-            graphics.ApplyChanges();
             IsMouseVisible = true;
             btnPlay = new cButton(Content.Load<Texture2D>("playBtn"), graphics.GraphicsDevice);
-            btnPlay.setPosition(new Vector2(300, 300));
+            btnPlay.setPosition(new Vector2(screenWidth / 2 - btnPlay.size.X / 2, screenHeight / 2 - btnPlay.size.Y / 2));
 
             btnOptions = new cButton(Content.Load<Texture2D>("optionsBtn"), graphics.GraphicsDevice);
-            btnOptions.setPosition(new Vector2(300, 340));
+            btnOptions.setPosition(new Vector2(screenWidth / 2 - btnPlay.size.X / 2, screenHeight / 2 - btnPlay.size.Y / 2 + 40));
 
             btnQuit = new cButton(Content.Load<Texture2D>("quitBtn"), graphics.GraphicsDevice);
-            btnQuit.setPosition(new Vector2(300, 380));
+            btnQuit.setPosition(new Vector2(screenWidth / 2 - btnPlay.size.X / 2, screenHeight / 2 - btnPlay.size.Y / 2 + 80));
             //////////////////////////////////// end ////////////////////////////////////
         }
 
@@ -101,7 +97,7 @@ namespace SoapHero
                 case GameState.MainMenu:
                     if (btnPlay.isClicked == true) 
                     {
-                        levelManager = new LevelManager();
+                        levelManager.InitializeWorld(Content, graphics);
                         CurrentGameState = GameState.Playing;
                     }
                     //if (btnOptions.isClicked == true) CurrentGameState = GameState.Options;
@@ -110,9 +106,10 @@ namespace SoapHero
                     btnPlay.Update(mouse);                  
                     btnOptions.Update(mouse);
                     btnQuit.Update(mouse);
+
                     break;
                 case GameState.Playing:
-                    levelManager.Update(CurrentWorldState);
+                    levelManager.Update(gameTime, graphics);
                     break;
                 case GameState.Options:
                     break;
@@ -136,14 +133,14 @@ namespace SoapHero
             switch (CurrentGameState)
             {
                 case GameState.MainMenu:
-                    spriteBatch.Draw(Content.Load<Texture2D>("MainMenu"), new Rectangle(0, 0, screenWith, screenHight), Color.White);
+                    spriteBatch.Draw(Content.Load<Texture2D>("MainMenu"), new Rectangle(0, 0, screenWidth, screenHeight), Color.White);
                     btnPlay.Draw(spriteBatch);
                     btnOptions.Draw(spriteBatch);
                     btnQuit.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
                     //levelManager.Draw(CurrentWorldState, cameraRect, spriteBatch);
-                    levelManager.Draw(CurrentWorldState, GraphicsDevice); //TEMP TO TEST PLAYER
+                    levelManager.Draw(GraphicsDevice, spriteBatch);
                     break;
                 case GameState.Options:
                     break;

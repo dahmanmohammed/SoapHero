@@ -214,7 +214,7 @@ namespace SoapHero
         /// </summary>
         /// <param name="cameraRect">Rectangle de caméra.</param>
         /// <param name="spriteBatch">Gestionnaire de mise en tampon d'affichage.</param>
-        public override void Draw(Rectangle cameraRect, SpriteBatch spriteBatch)
+        public override void Draw(Rectangle cameraRect, SpriteBatch spriteBatch, Color? color)
         {
             // Calculer les coordonnées du sprite dans le monde.
             Rectangle destRect = new Rectangle(0, 0, this.Width, this.Height);
@@ -231,7 +231,7 @@ namespace SoapHero
             destRect.Offset(-cameraRect.X, -cameraRect.Y);
 
             // Afficher la tuile courante
-            this.PaletteAnimation.Draw(this.IndexTuile, destRect, spriteBatch);
+            this.PaletteAnimation.Draw(this.IndexTuile, destRect, spriteBatch, color);
         }
     }
 }

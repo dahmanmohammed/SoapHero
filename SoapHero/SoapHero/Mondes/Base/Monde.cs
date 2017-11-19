@@ -72,6 +72,6 @@ namespace SoapHero
         /// </summary>
         /// <param name="cameraRect">Rectangle de caméra.</param>
         /// <param name="spriteBatch">Gestionnaire de mise en tampon d'affichage.</param>
-        public abstract void Draw(Rectangle cameraRect, SpriteBatch spriteBatch);
+        public abstract void Draw(Rectangle cameraRect, SpriteBatch spriteBatch, Color? color);
     }
 }

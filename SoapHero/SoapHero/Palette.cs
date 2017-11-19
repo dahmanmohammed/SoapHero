@@ -156,9 +156,9 @@ namespace SoapHero
         /// <param name="tuileIdx">Numéro de la tuile de palette à afficher.</param>
         /// <param name="destRect">Coordonnées de la position d'affichage de la tuile à l'écran.</param>
         /// <param name="spriteBatch">Gestionnaire de mise en tampon d'affichage.</param>
-        public void Draw(int tuileIdx, Rectangle destRect, SpriteBatch spriteBatch)
+        public void Draw(int tuileIdx, Rectangle destRect, SpriteBatch spriteBatch, Color? color)
         {
-            spriteBatch.Draw(this.tuiles, destinationRectangle: destRect, sourceRectangle: this.SourceRect(tuileIdx));   // afficher la tuile
+            spriteBatch.Draw(this.tuiles, destinationRectangle: destRect, sourceRectangle: this.SourceRect(tuileIdx), color: color);   // afficher la tuile
         }
     }
 }

@@ -109,7 +109,7 @@ namespace SoapHero
         /// </summary>
         /// <param name="cameraRect">Rectangle de caméra.</param>
         /// <param name="spriteBatch">Gestionnaire de mise en tampon d'affichage.</param>
-        public override void Draw(Rectangle cameraRect, SpriteBatch spriteBatch)
+        public override void Draw(Rectangle cameraRect, SpriteBatch spriteBatch, Color? color)
         {
             // Initialiser le rectangle de destination aux dimensions d'une tuile
             Rectangle destRect = new Rectangle(0, 0, this.PaletteDeTuiles.LargeurTuile, this.PaletteDeTuiles.HauteurTuile);
@@ -127,7 +127,7 @@ namespace SoapHero
                     if (destRect.Intersects(cameraRect))
                     {
                         destRect.Offset(-cameraRect.X, -cameraRect.Y); // Décaler la destination en fonction de la caméra
-                        this.PaletteDeTuiles.Draw(this.MappeMonde[row, col], destRect, spriteBatch);
+                        this.PaletteDeTuiles.Draw(this.MappeMonde[row, col], destRect, spriteBatch, color);
                     }
                 }
             }
