@@ -50,6 +50,7 @@ namespace SoapHero
                     gd.Clear(Color.Blue);
                     break;
             }
+
         }
     }
 }

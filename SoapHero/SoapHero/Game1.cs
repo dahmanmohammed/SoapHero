@@ -12,8 +12,7 @@ namespace SoapHero
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        /////////////////////////////////////// begin /////////////////////////////////
-        
+        #region declarations
         GameState CurrentGameState = GameState.MainMenu;
         WorldState CurrentWorldState = WorldState.InitialWorld;
 
@@ -27,8 +26,8 @@ namespace SoapHero
         private Rectangle cameraRect;
 
         LevelManager levelManager;
+        #endregion
 
-        //////////////////////////////////////// end /////////////////////////////////
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -94,7 +93,7 @@ namespace SoapHero
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            ////////////////////////////////////// begin ///////////////////////////////////
+            #region logic
             MouseState mouse = Mouse.GetState();
 
             switch (CurrentGameState)
@@ -105,7 +104,7 @@ namespace SoapHero
                         levelManager = new LevelManager();
                         CurrentGameState = GameState.Playing;
                     }
- //                 if (btnOptions.isClicked == true) CurrentGameState = GameState.Options;
+                    //if (btnOptions.isClicked == true) CurrentGameState = GameState.Options;
                     if (btnQuit.isClicked == true) Exit();
 
                     btnPlay.Update(mouse);                  
@@ -118,7 +117,7 @@ namespace SoapHero
                 case GameState.Options:
                     break;
             }
-            /////////////////////////////////////// end ////////////////////////////////////
+            #endregion
 
             base.Update(gameTime);
         }
@@ -143,7 +142,7 @@ namespace SoapHero
                     btnQuit.Draw(spriteBatch);
                     break;
                 case GameState.Playing:
-                    //levelManager.Draw((int)CurrentWorldState, cameraRect, spriteBatch);
+                    //levelManager.Draw(CurrentWorldState, cameraRect, spriteBatch);
                     levelManager.Draw(CurrentWorldState, GraphicsDevice); //TEMP TO TEST PLAYER
                     break;
                 case GameState.Options:
